@@ -30,6 +30,11 @@ img {
   height: 175px;
   width: 150px;
 }
+.reset button {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
 
 .word {
   font-family: 'Amatic SC', cursive;

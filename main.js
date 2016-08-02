@@ -6,10 +6,8 @@
 // NOTE: No counter exists!
 // TODO: Pick a word from a random list of words.
 
-let counter = 0
-let solved = 0
-let wordString
-const wordArray = ['ADULT',
+const wordArray =
+[ 'ADULT',
   'AIRPLANE',
   'AIRCRAFT',
   'AIRPORT',
@@ -239,9 +237,13 @@ const wordArray = ['ADULT',
   'WINDOW',
   'WOMAN',
   'WORM' ]
+let counter = 0
+let solved = 0
+let wordString
 
 const chooseWord = (wordArray) => {
-  let choice = wordArray[Math.floor(Math.random() + wordArray.length)]
+  let choice = wordArray[Math.floor(Math.random() * wordArray.length)]
+  console.log(choice)
   return choice
 }
 
@@ -274,7 +276,7 @@ const handleLetterClick = (event) => {
       solved++
       if (solved >= letters.length) {
         document.querySelector('.modal.hidden').className = 'modal'
-        document.querySelector('.modal.hidden').innerHTML = 'YOU WIN!!!'
+        document.querySelector('.modal h1').textContent = 'YOU WIN!!!'
       }
     }
   }
@@ -290,21 +292,23 @@ const handleLetterClick = (event) => {
       document.querySelector('.modal h1').textContent = 'YOU LOSE!!!'
     }
   }
-  if (solved >= wordString.length) {
-    document.querySelector('.modal.hidden').className = 'modal'
-    document.querySelector('.modal h1').textContent = 'YOU WIN!!!!'
-  }
 }
-
 // ! Bang(not True)
 
 const init = () => {
-  wordString = chooseWord
+  wordString = chooseWord(wordArray)
 
   // Find the HTML node `<div class="input">`
   const inputs = document.querySelector('.input')
   // Find the HTML node `<div class="word">`
   const word = document.querySelector('.word')
+
+  // var resetButton = document.getElementbyId('resetButton')
+  // resetButton.onclick = reloadPage
+  const reset = document.querySelector('.reset')
+  function reloadPage () {
+    window.location.reload()
+  }
 
   // For each number, 0 through 25, as `i`
   for (let i = 0; i < 26; i++) {
